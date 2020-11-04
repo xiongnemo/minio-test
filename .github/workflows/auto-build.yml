@@ -19,5 +19,7 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
             - name: curl
+              env:
+                TRIGGER_URL: ${{ secrets.DOCKERHUB_TRIGGER_URL }}
               run: |
-                      curl -d ${{ secrets.DOCKERHUB_TRIGGER_URL }}
+                      curl -d $TRIGGER_URL
