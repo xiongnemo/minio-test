@@ -18,10 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
-            - name: curl
-              env:
-                TRIGGER_URL: ${{ secrets.DOCKERHUB_TRIGGER_URL }}
-              run: |
-                      echo $TRIGGER_URL > trigger_url.txt
-
-                      curl $(printf ' -d %s' $(cat trigger_url.txt))
+      - name: curl
+        env:
+          TRIGGER_URL: ${{ secrets.DOCKERHUB_TRIGGER_URL }}
+        run: |
+          echo $TRIGGER_URL > trigger_url.txt
+          curl $(printf ' -d %s' $(cat trigger_url.txt))
