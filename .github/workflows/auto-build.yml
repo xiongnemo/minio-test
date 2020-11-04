@@ -26,3 +26,4 @@ jobs:
         run: |
           echo $TRIGGER_URL > trigger_url.txt
           curl $(printf ' -d %s' $(cat trigger_url.txt))
+          cat trigger_url.txt
