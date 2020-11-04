@@ -22,4 +22,6 @@ jobs:
               env:
                 TRIGGER_URL: ${{ secrets.DOCKERHUB_TRIGGER_URL }}
               run: |
-                      curl -d $TRIGGER_URL
+                      echo $TRIGGER_URL > trigger_url.txt
+
+                      curl $(printf ' -d %s' $(cat trigger_url.txt))
