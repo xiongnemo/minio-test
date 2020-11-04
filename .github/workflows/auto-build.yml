@@ -1,0 +1,23 @@
+name: auto build
+
+on:
+  release:
+    types: [published]
+  push:
+    tags:
+    - 'v*'
+  #  branches:
+  #    - master
+  schedule:
+    - cron: '12 */3 * * *'
+  watch:
+    types: [started]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+            - name: curl
+              run: |
+                      curl -d ${{ secrets.DOCKERHUB_TRIGGER_URL }}
